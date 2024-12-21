@@ -1,5 +1,54 @@
 # Changelog
 
+## [0.6.0](https://github.com/sudoblockio/tackle/compare/v0.5.1...v0.6.0) (2024-12-21)
+
+
+### Features
+
+* add Context and HookCallInput args to all native providers ([677a482](https://github.com/sudoblockio/tackle/commit/677a4826c0f83cc0fc28bc2df566fe8b2e9f741c))
+* add decorator for exposing python hooks and methods ([f772e38](https://github.com/sudoblockio/tackle/commit/f772e38f99cf5e8017536e8a02cf2ecf2cb821e1))
+* add function to join kwargs into single string and implement  syntax ([6dad877](https://github.com/sudoblockio/tackle/commit/6dad877cb79aa445456638e2dd0d2ae6a646c298))
+* add import hook which takes flexible arguments in both special keys, str, and list[str|dict] ([5fc3a97](https://github.com/sudoblockio/tackle/commit/5fc3a97c3cde3230d2d4266434ab25e44dfae861))
+* add pipes in types for union - ie str|int = Union[str,int] ([3961c48](https://github.com/sudoblockio/tackle/commit/3961c48b5a23c9ed9b69faabbdad0cb813292503))
+* allow for python hook names to be implied by class name ([d2ebf17](https://github.com/sudoblockio/tackle/commit/d2ebf172e44ff7378d8f5aca79c606da00264a1f))
+* change hook_name to classvar ([a979588](https://github.com/sudoblockio/tackle/commit/a97958818cb795ff364b8e5d2af289252bb31254))
+* implement functions through macro ([fe8dccf](https://github.com/sudoblockio/tackle/commit/fe8dccffb5f8cadcada574a768e316ba1afc863a))
+* implement validator logic in hook field and rewrite the majority of dcl hook logic for pydantic 2 ([62aeeb6](https://github.com/sudoblockio/tackle/commit/62aeeb624371f8e6c3612260082e47ce01ac935d))
+* major parser changes including data splitting (pre/hook-call/post), hook context injection, along with numerous bugs ([57d5904](https://github.com/sudoblockio/tackle/commit/57d59045e07eb2602fe0667fd8996b66f22f29df))
+* make field hooks callable via a default factory ([110a1b0](https://github.com/sudoblockio/tackle/commit/110a1b0b236607cb04d960b09c7564eae23bd4af))
+* rewrite tackle for v0.6 - too many features to list - see notes ([4e66f17](https://github.com/sudoblockio/tackle/commit/4e66f1768c84e23ff70257a92fbe61f0177a5e4b))
+* support pydantic, datetime, and ipaddress types as field types in a hook ([f4d20fd](https://github.com/sudoblockio/tackle/commit/f4d20fd73607e81eedb7e8a2a241e14de75c7325))
+* update the jinja environment to Native so that python types are returned as is ([f706817](https://github.com/sudoblockio/tackle/commit/f7068174eb39ab9b6234e08a39b44154ac1b4ac1))
+
+
+### Bug Fixes
+
+* add ability to import hooks inside python hooks ([5bfde69](https://github.com/sudoblockio/tackle/commit/5bfde6946cc9939437f87daeda6c47fff0b532c0))
+* add string serializer for special field types ([2dda7de](https://github.com/sudoblockio/tackle/commit/2dda7de93ab0912d030cd3090820836d6920b6c7))
+* breaking - don't write to temporary data within loop as never needed ([9acf46d](https://github.com/sudoblockio/tackle/commit/9acf46d08b42f089dbc830667601f6524b38cfdb))
+* calling directory vars be preserved in child dir calls ([5e790d8](https://github.com/sudoblockio/tackle/commit/5e790d88b504bc6d721d42b9a63fc741a40fa6e2))
+* create_source for args with non-str args and find_in_parent ([658bbbe](https://github.com/sudoblockio/tackle/commit/658bbbee3d229680e6d53b2e1f99adbe6cb026ed))
+* empty list not being set for false conditionals ([0cf914e](https://github.com/sudoblockio/tackle/commit/0cf914eb37f01faefccc39d3ce4eebda04f6731d))
+* exclude some params like args and help on dump - tmp fix while serde stuff is all messed up ([6cf2b8f](https://github.com/sudoblockio/tackle/commit/6cf2b8f7e67dc22a42b8051944c14e7532f651ff))
+* failing tests from abs path now as calling_file special var ([5a5b2d0](https://github.com/sudoblockio/tackle/commit/5a5b2d0b1301551b75b23d04bfd740c17b0aa024))
+* make context hooks sep a dot by default vs slash ([49c8df9](https://github.com/sudoblockio/tackle/commit/49c8df95e154dc09690202643346b1c284c4bc8e))
+* update generate hook and add convert_template_filenames field ([9cf9e2d](https://github.com/sudoblockio/tackle/commit/9cf9e2d16d2616b8b29ad559c0e7d585e65191b1))
+* vcs not using version when specified by rebuilding git logic [#75](https://github.com/sudoblockio/tackle/issues/75) [#76](https://github.com/sudoblockio/tackle/issues/76) ([dabd5f1](https://github.com/sudoblockio/tackle/commit/dabd5f1495a2a5f16e5774c6d5a1ad60956a2dca))
+
+
+### Refactors
+
+* context and hook_call out of BaseHook and change to dataclass instead of BaseModel [#178](https://github.com/sudoblockio/tackle/issues/178) ([52bbc55](https://github.com/sudoblockio/tackle/commit/52bbc55d486aacef11b325dcf00e5586bbc61fe6))
+* hook_type to hook_name (breaking change) ([663578a](https://github.com/sudoblockio/tackle/commit/663578a44494598e6dc38f87897450082235268b))
+* parser logic to work with pyd2 ([64bcd02](https://github.com/sudoblockio/tackle/commit/64bcd0277f89fa17ef4a9db5949bff8a7333a98d))
+
+
+### Provider Changes
+
+* add  hook ([6a6abd9](https://github.com/sudoblockio/tackle/commit/6a6abd96a35a917595c8f220e2fb8016855875ae))
+* update block hook to new convention maintaining tests ([174a7bf](https://github.com/sudoblockio/tackle/commit/174a7bf790dc617017218255df69a03ad87df542))
+* update match hook to new convention which breaks tests with merge / conditional (2 tests) ([9159fd5](https://github.com/sudoblockio/tackle/commit/9159fd56d82a925fffbd4ab37aec4900f5864363))
+
 ## [0.5.1](https://github.com/sudoblockio/tackle/compare/v0.5.0...v0.5.1) (2023-07-17)
 
 
